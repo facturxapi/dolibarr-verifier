@@ -1,0 +1,73 @@
+{
+  "valid": false,
+  "validatedAt": "2026-04-28T10:00:00.000Z",
+  "filename": "invoice.xml",
+  "profile": "EN16931",
+  "durationMs": 124,
+  "summary": {
+    "errorCount": 1,
+    "warningCount": 0
+  },
+  "issues": [
+    {
+      "code": "XSD_VALIDATION_ERROR",
+      "severity": "error",
+      "stage": "xsd",
+      "message": "Missing required element: InvoiceNumber",
+      "line": 42,
+      "expected": "InvoiceNumber",
+      "location": "line 42",
+      "xpath": "/Invoice/ID"
+    }
+  ],
+  "stages": {
+    "pdfa": {
+      "passed": true,
+      "skipped": true,
+      "skip_reason": "XML file - PDF/A validation not applicable",
+      "error_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "issues": []
+    },
+    "facturx_pdf": {
+      "passed": true,
+      "skipped": true,
+      "skip_reason": "XML file - PDF checks not applicable",
+      "error_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "issues": []
+    },
+    "xsd": {
+      "passed": false,
+      "skipped": false,
+      "error_count": 1,
+      "warning_count": 0,
+      "info_count": 0,
+      "issues": []
+    },
+    "schematron": {
+      "passed": true,
+      "skipped": false,
+      "error_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "issues": []
+    }
+  },
+  "errors": [
+    {
+      "code": "XSD_VALIDATION_ERROR",
+      "severity": "error",
+      "stage": "xsd",
+      "message": "Missing required element: InvoiceNumber",
+      "line": 42,
+      "expected": "InvoiceNumber",
+      "location": "line 42",
+      "xpath": "/Invoice/ID"
+    }
+  ],
+  "warnings": [],
+  "_fixture_source": "Copied from the 'examples' of POST /api/v1/validate in https://api-staging.facturxapi.com/openapi.json fetched 2026-11-08. Shape reference only, not a recorded call."
+}

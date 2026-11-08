@@ -1,0 +1,35 @@
+# Copyright (C) 2026 FacturX API - GPL-3.0-or-later
+# Try the module by hand: docker compose up, then http://localhost:8080 (admin / admin1234).
+# Dolibarr's official image installs itself from the DOLI_* variables; the module is mounted
+# into htdocs/custom. Set FACTURXVERIFY_API_URL to http://mock-api:8765 and the key to
+# fx_mock_key in the module setup to use the test double instead of the real API.
+services:
+  mariadb:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: dolibarr
+      MARIADB_USER: dolibarr
+      MARIADB_PASSWORD: dolibarr
+  dolibarr:
+    image: dolibarr/dolibarr:22
+    depends_on: [mariadb]
+    ports: ["8080:80"]
+    environment:
+      DOLI_DB_HOST: mariadb
+      DOLI_DB_NAME: dolibarr
+      DOLI_DB_USER: dolibarr
+      DOLI_DB_PASSWORD: dolibarr
+      DOLI_ADMIN_LOGIN: admin
+      DOLI_ADMIN_PASSWORD: admin1234
+      DOLI_INIT_DEMO: "0"
+      DOLI_COMPANY_COUNTRYCODE: FR
+      DOLI_ENABLE_MODULES: Societe,Facture,FacturxVerify
+    volumes:
+      - ./facturxverify:/var/www/html/custom/facturxverify:ro
+  mock-api:
+    image: php:8.3-cli
+    working_dir: /app
+    command: php -S 0.0.0.0:8765 tests/mock-api/router.php
+    volumes:
+      - ./:/app:ro

@@ -1,0 +1,56 @@
+{
+  "durationMs": 124,
+  "repaired_xml": "PD94bWwgdmVyc2lvbj0iMS4wIj8+...",
+  "diff_summary": [
+    {
+      "code": "format_corrected",
+      "path": "/rsm:CrossIndustryInvoice/.../ram:IssueDateTime",
+      "message": "Corrected date format from '2024-01-15' to '20240115'",
+      "beforeValue": "2024-01-15",
+      "afterValue": "20240115",
+      "ruleReference": "R001",
+      "changeCategory": "correction"
+    }
+  ],
+  "changesCount": 1,
+  "wasModified": true,
+  "repairApplied": true,
+  "targetVerified": true,
+  "validation_before": {
+    "valid": false,
+    "target": {
+      "requested": "en16931",
+      "executed": "en16931",
+      "status": "failed",
+      "missing_inputs": [],
+      "not_run_reason": null
+    },
+    "summary": {
+      "errorCount": 2,
+      "warningCount": 0
+    }
+  },
+  "target": {
+    "requested": "en16931",
+    "executed": "en16931",
+    "status": "verified",
+    "missing_inputs": [],
+    "not_run_reason": null
+  },
+  "repairSuccessful": true,
+  "validation_after": {
+    "valid": true,
+    "target": {
+      "requested": "en16931",
+      "executed": "en16931",
+      "status": "verified",
+      "missing_inputs": [],
+      "not_run_reason": null
+    },
+    "summary": {
+      "errorCount": 0,
+      "warningCount": 0
+    }
+  },
+  "_fixture_source": "Copied from the 'examples' of POST /api/v1/repair in https://api-staging.facturxapi.com/openapi.json fetched 2026-11-08. Shape reference only, not a recorded call."
+}

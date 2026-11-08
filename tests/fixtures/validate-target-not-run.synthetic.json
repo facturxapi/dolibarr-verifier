@@ -1,0 +1,4 @@
+{"_fixture_source": "SYNTHETIC: valid=true but the requested target was not run; the module must never show it as ready (validationStatus doc: demoted when target not evaluated).",
+ "valid": true, "profile": "BASIC", "summary": {"errorCount": 0, "warningCount": 0},
+ "target": {"requested": "france_2026", "executed": null, "status": "not_run", "missing_inputs": [], "not_run_reason": "profile_below_target"},
+ "issues": [], "errors": [], "warnings": [], "request_id": "00000000-0000-4000-8000-000000000002"}

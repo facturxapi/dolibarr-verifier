@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Dolibarr ${{ matrix.dolibarr }} / PHP ${{ matrix.php }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { dolibarr: "18.0.10", php: "8.1" }
+          - { dolibarr: "20.0.4", php: "8.2" }
+          - { dolibarr: "22.0.5", php: "8.3" }
+          - { dolibarr: "24.0.2", php: "8.3" }
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: root
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, curl, gd, intl, mbstring, xml, zip
+          coverage: none
+      - name: Lint, unit tests, Dolibarr install and end-to-end check
+        env:
+          DOLI_VERSION: ${{ matrix.dolibarr }}
+          DB_HOST: 127.0.0.1
+          DB_ROOT_PASS: root
+          WORK: ${{ runner.temp }}/work
+        run: dev/ci.sh
+      - name: Server log on failure
+        if: failure()
+        run: tail -n 200 "${{ runner.temp }}/work/dolidata/php-server.log" || true
+
+  package:
+    runs-on: ubuntu-24.04
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the DoliStore zip
+        run: dev/package.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: module_facturxverify
+          path: dist/*.zip

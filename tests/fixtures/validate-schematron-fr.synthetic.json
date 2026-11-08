@@ -1,0 +1,9 @@
+{"_fixture_source": "SYNTHETIC, built from the documented UnifiedValidationResponse fields (issues[].ruleId/severity/stage/message/location/xpath/correction, target). Not a recorded call; replace with a staging recording when the test key is available.",
+ "valid": false, "profile": "EN16931", "summary": {"errorCount": 2, "warningCount": 1},
+ "target": {"requested": "france_2026", "executed": "france_2026", "status": "failed", "missing_inputs": [], "not_run_reason": null},
+ "issues": [
+  {"code": "SCHEMATRON", "ruleId": "BR-FR-12", "severity": "warning", "stage": "schematron", "message": "Avertissement de démonstration.", "location": "/rsm:CrossIndustryInvoice"},
+  {"code": "SCHEMATRON", "ruleId": "BR-CO-15", "severity": "error", "stage": "schematron", "message": "Le montant TTC (BT-112) doit être égal au total HT (BT-109) plus la TVA (BT-110).", "xpath": "/rsm:CrossIndustryInvoice/rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:SpecifiedTradeSettlementHeaderMonetarySummation"},
+  {"code": "SCHEMATRON", "ruleId": "BR-E-02", "severity": "fatal", "stage": "schematron", "message": "Une facture avec une ligne en catégorie E doit porter un identifiant TVA ou fiscal du vendeur.", "location": "/rsm:CrossIndustryInvoice/rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeAgreement/ram:SellerTradeParty", "correction": {"kind": "input_required", "bt": "BT-31", "proposed": "FR..."}}
+ ],
+ "request_id": "00000000-0000-4000-8000-000000000001"}

@@ -1,0 +1,2 @@
+{"_fixture_source": "Real answer of https://api-staging.facturxapi.com POST /api/v1/validate?validation_target=france_2026 with an invalid X-API-Key, recorded 2026-11-08 ~14:50Z (HTTP 401).", "_status": 401,
+ "detail":{"error":"invalid_api_key","message":"The API key provided is invalid or revoked.","supported_methods":["Bearer token","X-API-Key header","refresh_token cookie"]},"request_id":"bd7011fe-dc54-46ec-a076-3d198ea17103"}
